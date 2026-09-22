@@ -13,7 +13,7 @@ function App(){
         const resultados=g.results??[]; if(!resultados.length){setError("No se encontró la ciudad");return;}
         const ubicacion=resultados[0]??resultados[1]; setLugar(ubicacion);
         const r2=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${ubicacion.latitude }&longitude=${ubicacion.longitude}&current=temperature_2m,apparent_temperature,wind_speed_10m`); if(!r2.ok)throw new Error("No fue posible consultar el clima"); 
-        const d=await r2.json(); 
+        const d=await r2.json();  
         const t=d.current?.temperature_2m??0; 
         const temperatura=Number((t.toFixed(1))); 
         const estado=temperatura>=25?"Hace calor":"Temperatura moderada";
